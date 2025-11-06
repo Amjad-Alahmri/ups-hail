@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تدشين منصة نظام الجودة الإلكتروني</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
+            /* ** التعديل الرئيسي: تدرج أزرق فاتح قليلاً (بدأ من الداكن وانتهى بالأفتح) */
+            background: 
+                linear-gradient(135deg, #0e2b4f 0%, #1a4a8a 40%, #2b70bf 80%, #3a91e6 100%); 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* خلفية متحركة (تأثير الجزيئات/النجوم) */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px), 
+                radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px); 
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            animation: moveBackground 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 900px;
+            width: 90%; 
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 35vw; 
+            max-width: 350px; 
+            height: 18vw; 
+            max-height: 180px; 
+            margin: 0 auto 40px;
+            background: 
+                linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                /* ظل أزرق أفتح قليلاً */
+                0 0 40px rgba(58, 145, 230, 0.3), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            position: relative;
+            transform: translateY(0);
+            animation: floatLogo 3s ease-in-out infinite;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            background: linear-gradient(145deg, transparent, rgba(43, 112, 191, 0.1)); 
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover::before {
+            opacity: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ffffff, #e3f2fd, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            animation: shimmer 3s ease-in-out infinite;
+            letter-spacing: 1px;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 70px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .launch-button {
+            width: 35vw; 
+            height: 35vw; 
+            max-width: 320px; 
+            max-height: 320px; 
+            margin: 0 auto;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .launch-button:hover {
+            transform: scale(1.02);
+        }
+
+        /* حلقات خارجية */
+        .launch-button::before,
+        .launch-button::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2); 
+            animation: pulse-ring 3s ease-out infinite;
+        }
+
+        .launch-button::before {
+            width: 118%;
+            height: 118%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .launch-button::after {
+            width: 138%;
+            height: 138%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 1s;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        .circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: 
+                linear-gradient(145deg, #ffffff 0%, #f0f7ff 50%, #e3f2fd 100%);
+            border: 1.5vw solid rgba(255, 255, 255, 0.4); 
+            max-border-width: 15px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                /* ظل أزرق أفتح قليلاً */
+                0 0 50px rgba(43, 112, 191, 0.3), 
+                inset 0 -10px 30px rgba(43, 112, 191, 0.15), 
+                inset 0 10px 30px rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: visible;
+        }
+
+        /* توهج داخلي قبل الضغط */
+        .circle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(43, 112, 191, 0.18) 0%, transparent 70%); 
+            animation: preGlow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes preGlow {
+            0%, 100% {
+                transform: scale(0.9);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .circle:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 25px 80px rgba(43, 112, 191, 0.5), 
+                0 0 80px rgba(43, 112, 191, 0.4), 
+                inset 0 -10px 30px rgba(43, 112, 191, 0.2), 
+                inset 0 10px 30px rgba(255, 255, 255, 0.9);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .circle-text {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #2b70bf; /* لون أزرق أفتح قليلاً */
+            z-index: 2;
+            transition: all 0.4s ease;
+            text-shadow: 0 2px 10px rgba(43, 112, 191, 0.2); 
+            letter-spacing: 1px;
+        }
+
+        .countdown {
+            font-size: 5rem;
+            font-weight: 900;
+            color: #2b70bf; /* لون أزرق أفتح قليلاً */
+            z-index: 2;
+            animation: countdownPulse 1s ease-in-out;
+            text-shadow: 0 4px 20px rgba(43, 112, 191, 0.3); 
+        }
+
+        @keyframes countdownPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.4);
+                opacity: 0.8;
+            }
+        }
+
+        /* أثناء العد */
+        .counting .circle {
+            background: linear-gradient(145deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            animation: countingGlow 1s ease-in-out;
+            box-shadow: 
+                0 0 50px rgba(43, 112, 191, 0.6), 
+                0 0 100px rgba(43, 112, 191, 0.4), 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 0 50px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes countingGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 40px rgba(43, 112, 191, 0.5), 
+                    0 0 80px rgba(43, 112, 191, 0.3); 
+            }
+            50% {
+                box-shadow: 
+                    0 0 70px rgba(43, 112, 191, 0.8), 
+                    0 0 140px rgba(43, 112, 191, 0.5); 
+            }
+        }
+
+        /* بعد التدشين - الدائرة الزرقاء المشعة */
+        .launched .circle {
+            /* تدرج أزرق فاتح مشع */
+            background: 
+                radial-gradient(circle at 30% 30%, #5dade2 0%, #3a91e6 50%, #2b70bf 100%); 
+            border-color: rgba(153, 204, 255, 0.6); 
+            animation: ultimateGlow 2s ease-in-out infinite;
+            box-shadow: 
+                0 0 60px rgba(43, 112, 191, 1), 
+                0 0 120px rgba(93, 173, 226, 0.8), 
+                0 0 180px rgba(58, 145, 230, 0.6), 
+                0 0 240px rgba(43, 112, 191, 0.4), 
+                0 30px 80px rgba(0, 0, 0, 0.5),
+                inset 0 0 80px rgba(255, 255, 255, 0.2);
+        }
+
+        .launched .circle::before {
+            display: none;
+        }
+
+        /* حلقات متوسعة أجمل */
+        .launched .circle::after {
+            content: '';
+            position: absolute;
+            width: 130%;
+            height: 130%;
+            border-radius: 50%;
+            border: 3px solid rgba(93, 173, 226, 0.6); 
+            animation: expandRing 2.5s ease-out infinite;
+            box-shadow: 0 0 40px rgba(93, 173, 226, 0.8); 
+        }
+
+        @keyframes expandRing {
+            0% {
+                transform: scale(0.7);
+                opacity: 0;
+                border-width: 6px;
+            }
+            50% {
+                opacity: 1;
+                border-width: 3px;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+                border-width: 1px;
+            }
+        }
+
+        .launched .circle-text {
+            color: white;
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 1),
+                0 0 40px rgba(255, 255, 255, 0.8),
+                0 0 60px rgba(255, 255, 255, 0.6);
+            animation: textGlow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 
+                    0 0 20px rgba(255, 255, 255, 1),
+                    0 0 40px rgba(255, 255, 255, 0.8);
+            }
+            50% {
+                text-shadow: 
+                    0 0 30px rgba(255, 255, 255, 1),
+                    0 0 60px rgba(255, 255, 255, 1),
+                    0 0 80px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        @keyframes ultimateGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 60px rgba(43, 112, 191, 1), 
+                    0 0 120px rgba(93, 173, 226, 0.8), 
+                    0 0 180px rgba(58, 145, 230, 0.6), 
+                    0 0 240px rgba(43, 112, 191, 0.4), 
+                    0 30px 80px rgba(0, 0, 0, 0.5),
+                    inset 0 0 80px rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 0 80px rgba(43, 112, 191, 1), 
+                    0 0 160px rgba(93, 173, 226, 1), 
+                    0 0 240px rgba(58, 145, 230, 0.8), 
+                    0 0 320px rgba(43, 112, 191, 0.6), 
+                    0 30px 80px rgba(0, 0, 0, 0.5),
+                    inset 0 0 100px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(43, 112, 191, 0.6) 0%, transparent 70%); 
+            width: 0;
+            height: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.8;
+            }
+            100% {
+                width: 500px;
+                height: 500px;
+                opacity: 0;
+            }
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 14px;
+            height: 60px;
+            /* ألوان أزرق فاتح للملصقات */
+            background: linear-gradient(180deg, #2b70bf, #3a91e6); 
+            animation: confetti-fall 6s linear;
+            border-radius: 3px;
+            box-shadow: 
+                0 0 10px rgba(43, 112, 191, 0.8), 
+                0 0 20px rgba(43, 112, 191, 0.5); 
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(1080deg);
+                opacity: 0;
+            }
+        }
+
+        .success-message {
+            margin-top: 50px;
+            font-size: 2.5rem;
+            font-weight: 900;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: linear-gradient(to right, #ffffff, #e3f2fd, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* جزيئات خلفية محسنة */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+                transform: translateY(0) translateX(-10px);
+            }
+            75% {
+                transform: translateY(20px) translateX(5px);
+            }
+        }
+
+        /* --- استعلامات الوسائط (Media Queries) للتجاوب --- */
+        
+        /* شاشات الجوال الصغيرة (أقل من 768 بكسل) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .logo {
+                width: 60vw;
+                height: 30vw;
+                margin-bottom: 30px;
+            }
+
+            h1 {
+                font-size: 8vw; 
+                line-height: 1.2;
+            }
+
+            .subtitle {
+                font-size: 4vw; 
+                margin-bottom: 50px;
+            }
+
+            .launch-button {
+                width: 60vw; 
+                height: 60vw;
+                max-width: 280px;
+                max-height: 280px;
+            }
+
+            .circle-text {
+                font-size: 6vw; 
+            }
+
+            .countdown {
+                font-size: 12vw; 
+            }
+
+            .success-message {
+                font-size: 6vw; 
+                margin-top: 30px;
+            }
+        }
+        
+        /* شاشات الجوال الأصغر (أقل من 480 بكسل) */
+        @media (max-width: 480px) {
+            .launch-button {
+                width: 70vw; 
+                height: 70vw;
+            }
+
+            .logo {
+                width: 75vw;
+                height: 40vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="scaled2.png" alt="شعار الجهة" style="width: 100%; height: 100%; object-fit: contain; padding: 20px;">
+        </div>
+        
+        <h1>تدشين منصة نظام الجودة الإلكتروني</h1>
+        <p class="subtitle">اضغط على الدائرة للتدشين</p>
+        
+        <div class="launch-button" id="launchButton">
+            <div class="circle">
+                <span class="circle-text">تدشين</span>
+            </div>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            ✨ تم التدشين بنجاح ✨
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration"></div>
+
+    <script>
+        const launchButton = document.getElementById('launchButton');
+        const successMessage = document.getElementById('successMessage');
+        const celebration = document.getElementById('celebration');
+        const circleText = launchButton.querySelector('.circle-text');
+        let launched = false;
+
+        launchButton.addEventListener('click', function(e) {
+            if (launched) return;
+            
+            launched = true;
+            this.style.cursor = 'default';
+            this.classList.add('counting');
+            
+            // العداد التنازلي
+            let count = 3;
+            circleText.className = 'countdown';
+            circleText.textContent = count;
+            
+            const countdown = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    circleText.textContent = count;
+                    circleText.style.animation = 'none';
+                    setTimeout(() => {
+                        circleText.style.animation = 'countdownPulse 1s ease-in-out';
+                    }, 10);
+                } else {
+                    clearInterval(countdown);
+                    
+                    // إضافة تأثير الموجة
+                    const ripple = document.createElement('div');
+                    ripple.className = 'ripple';
+                    ripple.style.animation = 'rippleEffect 1s ease-out';
+                    this.querySelector('.circle').appendChild(ripple);
+                    
+                    // التدشين!
+                    setTimeout(() => {
+                        this.classList.remove('counting');
+                        this.classList.add('launched');
+                        circleText.className = 'circle-text';
+                        circleText.textContent = '🎉 تم التدشين 🎉';
+                    }, 300);
+                    
+                    // إظهار رسالة النجاح
+                    setTimeout(() => {
+                        successMessage.classList.add('show');
+                    }, 800);
+                    
+                    // إضافة احتفالية
+                    createConfetti();
+                }
+            }, 1000);
+        });
+
+        function createConfetti() {
+            // كل الشرايط بألوان زرقاء متدرجة
+            const colors = [
+                'linear-gradient(180deg, #2b70bf, #3a91e6)', 
+                'linear-gradient(180deg, #3a91e6, #5dade2)', 
+                'linear-gradient(180deg, #2b70bf, #5dade2)', 
+                'linear-gradient(180deg, #3a91e6, #2b70bf)', 
+                'linear-gradient(180deg, #5dade2, #3a91e6)', 
+                'linear-gradient(180deg, #7dc4f5, #5dade2)' 
+            ];
+            
+            for (let i = 0; i < 120; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.4 + 's';
+                    confetti.style.width = (Math.random() * 10 + 10) + 'px';
+                    confetti.style.height = (Math.random() * 50 + 40) + 'px';
+                    confetti.style.animationDuration = (Math.random() * 2 + 5) + 's';
+                    
+                    celebration.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 7000);
+                }, i * 25);
+            }
+        }
+
+        // إضافة جزيئات متحركة في الخلفية
+        function createParticles() {
+            const particles = document.createElement('div');
+            particles.className = 'particles';
+            document.body.appendChild(particles);
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = (Math.random() * 5 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        createParticles();
+    </script>
+</body>
+</html>
